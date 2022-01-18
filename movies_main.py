@@ -1,44 +1,41 @@
-#===============
+# ===============
 # Import modules
-#===============
-from pylink import *
-from pygame import *
-import os                           # for file/folder operations
-import numpy.random as rnd          # for random number generators
+# ===============
+import os  # for file/folder operations
+
 import numpy as np
+import numpy.random as rnd  # for random number generators
+import pylink
 from psychopy import visual, event, core, gui, data
+from pygame import *
+from pylink import *
 
-import time
-import gc
-import sys
-import movies_trials
-
-#==============================================
+# ==============================================
 # PARAMETERS
-#==============================================
+# ==============================================
 
-datapath = 'data'                   # directory to save data in
-movpath = 'movies'                   # directory where images can be found
-sfx = 'h.mp4'                      # suffix for the movies
-movies_num=4;
-movlist = np.linspace(1,movies_num,num=movies_num,dtype=int) # image names without the suffixes
-scrsize = (800,600)                # screen size in pixels
+datapath = 'data'  # directory to save data in
+movpath = 'movies'  # directory where images can be found
+sfx = 'h.mp4'  # suffix for the movies
+movies_num = 4;
+movlist = np.linspace(1, movies_num, num=movies_num, dtype=int)  # image names without the suffixes
+scrsize = (800, 600)  # screen size in pixels
 get_subject_info = 0
 
-#========================================
+# ========================================
 # Store info about the experiment session
-#========================================
+# ========================================
 
 # Get subject name, gender, age, handedness through a dialog box
 exp_name = 'eye tracking memory'
 
 exp_info = {
-            'participant': '',
-            'edfFileName': '',
-             'gender': ('male', 'female'),
-            'age':'',
-            'left-handed':False
-            }
+    'participant': '',
+    'edfFileName': '',
+    'gender': ('male', 'female'),
+    'age': '',
+    'left-handed': False
+}
 if get_subject_info:
     dlg = gui.DlgFromDict(dictionary=exp_info, title=exp_name)
     # If 'Cancel' is pressed, quit
@@ -55,13 +52,12 @@ if not os.path.isdir(datapath):
 data_fname = exp_info['participant'] + '_' + exp_info['date']
 data_fname = os.path.join(datapath, data_fname)
 
-
-#========================
+# ========================
 # Prepare the trials
-#========================
+# ========================
 # Check if all movies exist
 for mov in movlist:
-    if (not os.path.exists(os.path.join(movpath, str(mov)+sfx))):
+    if (not os.path.exists(os.path.join(movpath, str(mov) + sfx))):
         raise Exception('movies files not found in movies folder: ' + str(mov))
 
 # Randomize the image order
@@ -76,12 +72,12 @@ win = visual.Window(size=scrsize, color='black', units='pix', fullscr=False)
 
 # Define trial start text
 start_message = visual.TextStim(win,
- text="Just watch the movies, hit spacebar to begin.",
- color='white', height=20)
+                                text="Just watch the movies, hit spacebar to begin.",
+                                color='white', height=20)
 
-#========================================
+# ========================================
 # Eyelink initialization
-#========================================
+# ========================================
 eyelinktracker = EyeLink()
 # Here is the starting point of the experiment
 # Initializes the graphics
@@ -91,7 +87,7 @@ pylink.openGraphics()
 
 # Opens the EDF file.
 if get_subject_info:
-    edfFileName=exp_info['edfFileName']
+    edfFileName = exp_info['edfFileName']
 else:
     edfFileName = "TEST.EDF"
 getEYELINK().openDataFile(edfFileName)
@@ -106,7 +102,6 @@ getEYELINK().sendMessage("DISPLAY_COORDS  0 0 %d %d" % (win.size[0], win.size[1]
 
 # getEYELINK().sendCommand("screen_pixel_coords =  0 0 %d %d" % (surf.get_rect().w, surf.get_rect().h))
 # getEYELINK().sendMessage("DISPLAY_COORDS  0 0 %d %d" % (surf.get_rect().w, surf.get_rect().h))
-
 
 
 tracker_software_ver = 0
@@ -140,9 +135,8 @@ else:
 
 getEYELINK().sendCommand("button_function 5 'accept_target_fixation'");
 
-
 pylink.setCalibrationColors((255, 255, 255), (0, 0, 0));  # Sets the calibration target and background color
-pylink.setTargetSize(int(win.size[0]/ 70),int(win.size[0]/ 300))  # select best size for calibration target
+pylink.setTargetSize(int(win.size[0] / 70), int(win.size[0] / 300))  # select best size for calibration target
 pylink.setCalibrationSounds("", "", "")
 pylink.setDriftCorrectSounds("", "off", "off")
 
@@ -172,7 +166,6 @@ if (getEYELINK().isConnected() and not getEYELINK().breakPressed()):
             if 'escape' in keys:
                 # Escape press = quit the experiment
                 break
-
 
         # movies_trials.run_trials(win)
 #

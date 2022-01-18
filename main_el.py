@@ -2,9 +2,11 @@
 # Import modules
 # ===============
 from __future__ import division
+
 import os  # for file/folder operations
-import numpy.random as rnd  # for random number generators
+
 import numpy as np
+import numpy.random as rnd  # for random number generators
 from psychopy import visual, event, core, gui, data, parallel, prefs
 
 prefs.hardware['audioLib'] = ['PTB', 'sounddevice', 'pyo', 'pygame']  # change this with blckrok
@@ -18,7 +20,7 @@ import time
 # ==============================================
 folder_laptop = r'C:\Users\Daniel Yamin\Documents\moviesExperiment_230121'
 
-eyelink_on = 1  #
+eyelink_on = 0  #
 get_subject_info = 1
 feedback_on = 1
 eeg_on = 0  # check in Ichilov

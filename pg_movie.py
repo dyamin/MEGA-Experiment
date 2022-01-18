@@ -11,7 +11,6 @@ movie_screen = pygame.Surface(movie.get_size()).convert()
 movie.set_display(movie_screen)
 movie.play()
 
-
 playing = True
 while playing:
     for event in pygame.event.get():
@@ -19,7 +18,7 @@ while playing:
             movie.stop()
             playing = False
 
-    screen.blit(movie_screen,(0,0))
+    screen.blit(movie_screen, (0, 0))
     pygame.display.update()
     clock.tick(FPS)
 

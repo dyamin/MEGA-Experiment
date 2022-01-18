@@ -1,9 +1,8 @@
-
-from pylink import *
-from pygame import *
-import time
 import gc
-import sys
+
+import pylink
+from pygame import *
+from pylink import *
 
 # if you need to save bitmap features and/or backdrop features set
 # BITMAP_SAVE_BACK_DROP to  true. This will require numpy or Numeric modules. Also
@@ -36,7 +35,6 @@ def end_trial():
         pass;
 
 
-
 def getTxtBitmap(text, dim):
     ''' This function is used to create a page of text. '''
 
@@ -66,9 +64,8 @@ def getImageBitmap(pic):
         mov = image.load("sacrmeto.jpg", "jpg")
         return bmp
     except:
-        print "Cannot load image sacrmeto.jpg";
-        return None;
-
+        print("Cannot load image sacrmeto.jpg")
+        return None
 
 
 trial_condition = ["Image-Window", "Image-Mask", "Text-Window", "Text-Mask"];
@@ -115,9 +112,9 @@ def do_trial(trial, surf):
     else:
         return SKIP_TRIAL;
 
-    if (fgbm == None or bgbm == None):
-        print "Skipping trial ", trial + 1, "because movie cannot be loaded"
-        return SKIP_TRIAL;
+    if fgbm is None or bgbm is None:
+        print(trial + 1, "because movie cannot be loaded")
+        return SKIP_TRIAL
 
     # The following code is for the EyeLink Data Viewer integration purpose.
     # See section "Protocol for EyeLink Data to Viewer Integration" of the EyeLink Data Viewer User Manual
@@ -161,9 +158,9 @@ def do_trial(trial, surf):
     pylink.beginRealTimeMode(100)
 
     if not getEYELINK().waitForBlockStart(100, 1, 0):
-        end_trial();
-        print "ERROR: No link samples received!";
-        return TRIAL_ERROR;
+        end_trial()
+        print("ERROR: No link samples received!")
+        return TRIAL_ERROR
 
     surf.fill((255, 255, 255, 255))
     surf.blit(bgbm, ((surf.get_rect().w - bgbm.get_rect().w) / 2, (surf.get_rect().h - bgbm.get_rect().h) / 2))
@@ -174,7 +171,7 @@ def do_trial(trial, surf):
                      (surf.get_rect().h - bgbm.get_rect().h) / 2))  # write to the back buffer
 
     getEYELINK().sendMessage("SYNCTIME %d" % (currentTime() - startTime));
-    ret_value =drawgc(surf, fgbm, startTime);
+    ret_value = drawgc(surf, fgbm, startTime);
     pylink.endRealTimeMode();
     gc.enable();
     return ret_value;
@@ -214,5 +211,3 @@ def run_trials(surface):
                 break;
 
     return 0;
-
-

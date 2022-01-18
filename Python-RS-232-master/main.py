@@ -62,8 +62,9 @@
 
 '''
 
-import host
 import sys
+
+import host
 
 
 ### Main  Routine ###
@@ -83,7 +84,6 @@ def main(portname):
     print("Starting RS-232 Master on port {:s}".format(portname))
     master = host.Host()
     master.start(portname)
-
 
     # Loop until we are to exit
     try:

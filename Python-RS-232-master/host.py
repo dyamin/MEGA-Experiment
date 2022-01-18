@@ -40,13 +40,17 @@ Created on Sun Feb 01 13:45:57 2015
 """
 
 from threading import Thread
-import serial, time, binascii
+
+import binascii
+import serial
+import time
 
 ### Globals ###
-#Change this value to modify polling rate. Currently 100 ms
+# Change this value to modify polling rate. Currently 100 ms
 POLL_RATE = 0.1
 
-#pylint: disable-msg=R0902
+
+# pylint: disable-msg=R0902
 
 class Host(object):
     """
@@ -54,11 +58,10 @@ class Host(object):
     slave for the purpose of accepting money in exchange for goods or services.
     """
 
-
-    state_dict = {1:"Idling ", 2:"Accepting ", 4:"Escrowed ", 8:"Stacking ",
-                  16:"Stacked ", 32:"Returning", 64:"Returned",
-                  17:"Stacked Idling ", 65:"Returned Idling "}
-    event_dict = {0:"", 1:"Cheated ", 2:"Rejected ", 4:"Jammed ", 8:"Full "}
+    state_dict = {1: "Idling ", 2: "Accepting ", 4: "Escrowed ", 8: "Stacking ",
+                  16: "Stacked ", 32: "Returning", 64: "Returned",
+                  17: "Stacked Idling ", 65: "Returned Idling "}
+    event_dict = {0: "", 1: "Cheated ", 2: "Rejected ", 4: "Jammed ", 8: "Full "}
 
     def __init__(self):
         # Set to False to kill
@@ -92,7 +95,6 @@ class Host(object):
         # release of resources (i.e. our comm port)
         self._serial_thread.daemon = False
         self._serial_thread.start()
-
 
     def stop(self):
         """
@@ -152,7 +154,7 @@ class Host(object):
 
             # basic message   0      1     2      3      4      5     6         7
             #               start, len,  ack, bills,escrow,resv'd,  end, checksum
-            msg = bytearray([0x02, 0x08, 0x10, 0x7F,  0x00,  0x00, 0x03,     0x00])
+            msg = bytearray([0x02, 0x08, 0x10, 0x7F, 0x00, 0x00, 0x03, 0x00])
 
             msg[2] = 0x10 | self.ack
             self.ack ^= 1
@@ -165,7 +167,6 @@ class Host(object):
             for byte in xrange(1, 6):
                 msg[7] ^= msg[byte]
 
-
             ser.write(msg)
             time.sleep(0.1)
 
@@ -174,7 +175,6 @@ class Host(object):
                 out += ser.read(1)
             if out == '':
                 continue
-
 
             # With the exception of Stacked and Returned, only we can
             # only be in one state at once
@@ -220,4 +220,3 @@ class Host(object):
 
         print("port closed")
         ser.close()
-
