@@ -20,7 +20,7 @@ import time
 # ==============================================
 folder_laptop = r'C:\Users\Daniel Yamin\Documents\moviesExperiment_230121'
 
-eyelink_on = 0  #
+eyelink_on = 0
 get_subject_info = 1
 feedback_on = 1
 eeg_on = 0  # check in Ichilov
@@ -30,7 +30,8 @@ full_screen = True
 datapath = 'data'  # directory to save data in
 movpath = 'metroMovies_coded'  # directory where images can be found
 sfx = 'p.mp4'  # suffix for the movies
-num_movies = 100  # not including end
+num_movies = 10  # not including end
+end_movie_num = 103
 movlist = np.linspace(1, num_movies, num=num_movies, dtype=int)  # image names without the suffixes
 scrsize = (1920, 1080)  # screen size in pixels
 # scrsize =  (960,540)                # screen size in pixels
@@ -85,14 +86,14 @@ writer = feedback.set_feedback_file(data_fname, exp_info)
 # Check if all movies exist
 for mov in movlist:
     num = str(mov).zfill(3)
-    if (not os.path.exists(os.path.join(movpath, num + sfx))):
+    if not os.path.exists(os.path.join(movpath, num + sfx)):
         print(os.path.exists(os.path.join(movpath, num + sfx)))
 
         raise Exception('movies files not found in movies folder: ' + num)
 
 # Randomize the image order
 rnd.shuffle(movlist)  # Took it for debugging
-movlist = np.append(movlist, 101)  # add the "end" movie
+movlist = np.append(movlist, end_movie_num)  # add the "end" movie
 
 # ==========================
 # Define the trial sequence
@@ -218,7 +219,7 @@ if 'space' in keys:
             # Escape press = quit the experiment
             break
         # movie=None
-        if (feedback_on and movlist[i] < 101):
+        if feedback_on and movlist[i] < 103:
             feedback.ask_feedback(win, movie_fname, data_fname)
 # Advance to the next trial
 

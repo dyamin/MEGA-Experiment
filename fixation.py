@@ -22,7 +22,8 @@ feedback_on = 1
 datapath = 'data_fixation'  # directory to save data in
 movpath = 'movies'  # directory where images can be found
 sfx = 'p.mp4'  # suffix for the movies
-num_movies = 100  # not including end
+num_movies = 3  # not including end
+end_movie_num = 103
 movlist = np.linspace(1, num_movies, num=num_movies, dtype=int)  # image names without the suffixes
 scrsize = (1920, 1080)  # screen size in pixels
 # scrsize = (800,600)                # screen size in pixels
@@ -80,7 +81,7 @@ for mov in movlist:
 
 # Randomize the image order
 rnd.shuffle(movlist)
-movlist = np.append(movlist, 101)
+movlist = np.append(movlist, end_movie_num)
 
 # ==========================
 # Define the trial sequence
@@ -186,7 +187,7 @@ if 'space' in keys:
             # Escape press = quit the experiment
             break
         # movie=None
-        if (feedback_on and movlist[i] < 101):
+        if (feedback_on and movlist[i] < end_movie_num):
             feedback.ask_feedback(win, movie_fname, data_fname)
 # Advance to the next trial
 
