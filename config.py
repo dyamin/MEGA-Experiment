@@ -11,7 +11,7 @@ full_screen = True
 
 datapath = 'data'  # directory to save data in
 sfx = 'p.mp4'  # suffix for the movies
-num_movies = 1  # not including end
+num_movies = 102  # not including end
 end_movie_num = 103
 scrsize = (1920, 1080)  # screen size in pixels
 # scrsize =  (960,540)                # screen size in pixels
