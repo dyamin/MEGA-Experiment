@@ -19,18 +19,17 @@ import time
 # PARAMETERS
 # ==============================================
 folder_laptop = r'C:\Users\Daniel Yamin\Documents\moviesExperiment_230121'
-
 eyelink_on = 0
+is_hebrew = 0
 get_subject_info = 1
 feedback_on = 1
 eeg_on = 0  # check in Ichilov
 # full_screen=False   
 full_screen = True
-
 datapath = 'data'  # directory to save data in
 movpath = 'metroMovies_coded'  # directory where images can be found
 sfx = 'p.mp4'  # suffix for the movies
-num_movies = 10  # not including end
+num_movies = 102  # not including end
 end_movie_num = 103
 movlist = np.linspace(1, num_movies, num=num_movies, dtype=int)  # image names without the suffixes
 scrsize = (1920, 1080)  # screen size in pixels
@@ -82,7 +81,7 @@ writer = feedback.set_feedback_file(data_fname, exp_info)
 
 # ========================
 # Prepare the trials
-# ========0000000================
+# ========================
 # Check if all movies exist
 for mov in movlist:
     num = str(mov).zfill(3)
@@ -131,12 +130,17 @@ if eeg_on:
 win = visual.Window(size=scrsize, color='grey', units='pix', fullscr=full_screen)
 win.mouseVisible = False
 # Define trial start text
-first_msg_eng = "You will be watching short movies, \n " \
-                "after each movie please state whether you saw it before, \n" \
-                "press 1 if you saw it \n press 2 if you didn't, \n " \
-                "Then you will be asked to rate your confidence level between 1-4 : \n " \
-                "1= not confident , 4= very confident. \n \n" \
-                "press spacebar to continue"
+if is_hebrew:
+    first_msg_eng = "יוקרנו בפניך סרטונים קצרים" + "\n" \
+                    "אחרי כל סרטון תישאל/י- האם צפית בו בעבר או לא?" + "\n" \
+                    ""
+else:
+    first_msg_eng = "You will be watching short movies, \n " \
+                    "after each movie please state whether you saw it before, \n" \
+                    "press 1 if you saw it \n press 2 if you didn't, \n " \
+                    "Then you will be asked to rate your confidence level between 1-4 : \n " \
+                    "1= not confident , 4= very confident. \n \n" \
+                    "press spacebar to continue"
 
 start_message = visual.TextStim(win, text=first_msg_eng,
                                 color='black', height=30, alignText='center', antialias=False)
