@@ -39,11 +39,11 @@ Created on Sun Feb 01 13:45:57 2015
 '***********************************************************************
 """
 
+import binascii
+import time
 from threading import Thread
 
-import binascii
 import serial
-import time
 
 ### Globals ###
 # Change this value to modify polling rate. Currently 100 ms

@@ -2,6 +2,8 @@ import csv
 
 from psychopy import visual, event
 
+import config
+
 
 def set_feedback_file(data_fname, exp_info):
     with open(data_fname + ".csv", 'w+') as csvfile:
@@ -14,10 +16,14 @@ def set_feedback_file(data_fname, exp_info):
 
 def ask_feedback(win, movie_fname, data_fname):
     # this function asks feedback and saves it to csv file
-
-    message1 = visual.TextStim(win,
-                               text="Have you seen this movie before? \n 1 =Yes  \n 2 = No",
-                               color='black', height=40, alignText='center', antialias=False)
+    if config.is_hebrew:
+        message1 = visual.TextStim(win,
+                               text=config.feedback_seen_msg_heb,  languageStyle='RTL',
+                               color='black', height=80, alignText='center', antialias=False)
+    else:
+        message1 = visual.TextStim(win,
+                               text=config.feedback_seen_msg_eng,
+                               color='black', height=80, alignText='center', antialias=False)
     message1.draw()
     win.flip()
 
@@ -25,10 +31,15 @@ def ask_feedback(win, movie_fname, data_fname):
     while not keys1:
         keys1 = event.getKeys(keyList=['1', '2', 'num_1', 'num_2'])
 
-    message2 = visual.TextStim(win,
-                               text="How confident are you? \n "
-                                    "not confident- 1 \n 2 \n 3 \n very confident-4.",
-                               color='black', height=40, alignText='center', antialias=False)
+    if config.is_hebrew:
+        message2 = visual.TextStim(win,
+                               text=config.feedback_confidence_msg_heb,  languageStyle='RTL',
+                               color='black', height=60, alignText='center', antialias=False)
+    else:
+        message2 = visual.TextStim(win,
+                                   text=config.feedback_confidence_msg_eng,
+                                   color='black', height=60, alignText='center', antialias=False)
+
     message2.draw()
     win.flip()
     keys2 = []

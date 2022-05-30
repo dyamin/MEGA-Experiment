@@ -6,7 +6,7 @@ import os  # for file/folder operations
 import numpy as np
 import numpy.random as rnd  # for random number generators
 import pylink
-from psychopy import visual, event, core, gui, data
+from psychopy import visual, core, gui, data
 from pygame import *
 from pylink import *
 
