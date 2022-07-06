@@ -2,17 +2,17 @@
 # PARAMETERS
 # ==============================================
 
-eyelink_on = 0
+eyelink_on = 1
 is_hebrew = 1
 get_subject_info = 1
 feedback_on = 1
-eeg_on = 0  # check in Ichilov
+eeg_on = 0
 full_screen = True
 
-datapath = 'data'  # directory to save data in
+datapath = 'data'  # directory to save data iךםל
 sfx = 'p.mp4'  # suffix for the movies
-num_movies = 102  # not including end
-end_movie_num = 103
+num_movies = 100  # not including end
+end_movie_num = 101
 scrsize = (1920, 1080)  # screen size in pixels
 # scrsize =  (960,540)                # screen size in pixels
 edfFileName = 'OS'
