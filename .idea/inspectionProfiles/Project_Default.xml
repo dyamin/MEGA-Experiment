@@ -14,7 +14,7 @@
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
-          <list size="70">
+          <list size="87">
             <item index="0" class="java.lang.String" itemvalue="greenlet" />
             <item index="1" class="java.lang.String" itemvalue="pygame" />
             <item index="2" class="java.lang.String" itemvalue="egi" />
@@ -85,6 +85,23 @@
             <item index="67" class="java.lang.String" itemvalue="openpyxl" />
             <item index="68" class="java.lang.String" itemvalue="pylink" />
             <item index="69" class="java.lang.String" itemvalue="cffi" />
+            <item index="70" class="java.lang.String" itemvalue="asn1crypto" />
+            <item index="71" class="java.lang.String" itemvalue="PyYAML" />
+            <item index="72" class="java.lang.String" itemvalue="atomicwrites" />
+            <item index="73" class="java.lang.String" itemvalue="cryptography" />
+            <item index="74" class="java.lang.String" itemvalue="et-xmlfile" />
+            <item index="75" class="java.lang.String" itemvalue="attrs" />
+            <item index="76" class="java.lang.String" itemvalue="chardet" />
+            <item index="77" class="java.lang.String" itemvalue="XlsxWriter" />
+            <item index="78" class="java.lang.String" itemvalue="appdirs" />
+            <item index="79" class="java.lang.String" itemvalue="backcall" />
+            <item index="80" class="java.lang.String" itemvalue="Pygments" />
+            <item index="81" class="java.lang.String" itemvalue="colorama" />
+            <item index="82" class="java.lang.String" itemvalue="configparser" />
+            <item index="83" class="java.lang.String" itemvalue="matplotlib" />
+            <item index="84" class="java.lang.String" itemvalue="configobj" />
+            <item index="85" class="java.lang.String" itemvalue="pyosf" />
+            <item index="86" class="java.lang.String" itemvalue="esprima" />
           </list>
         </value>
       </option>

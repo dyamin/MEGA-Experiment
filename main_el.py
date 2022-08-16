@@ -17,7 +17,7 @@ import feedback
 prefs.hardware['audioLib'] = ['PTB', 'sounddevice', 'pyo', 'pygame']  # change this with blckrok
 movpath = 'metroMovies_coded'  # directory where images can be found
 movlist = np.linspace(1, config.num_movies, num=config.num_movies, dtype=int)  # image names without the suffixes
-folder_laptop = r'C:\Users\Daniel Yamin\Documents\moviesExperiment_230121'
+folder_laptop = r'C:\Users\dhyam\PycharmProjects\MoviesExperiment'
 os.chdir(folder_laptop)
 
 # ========================================

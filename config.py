@@ -1,3 +1,5 @@
+import ctypes
+
 # ==============================================
 # PARAMETERS
 # ==============================================
@@ -9,12 +11,21 @@ feedback_on = 1
 eeg_on = 0
 full_screen = True
 
-datapath = 'data'  # directory to save data iךםל
+datapath = 'data'  # directory to save data
 sfx = 'p.mp4'  # suffix for the movies
-num_movies = 100  # not including end
-end_movie_num = 101
-scrsize = (1920, 1080)  # screen size in pixels
-# scrsize =  (960,540)                # screen size in pixels
+num_movies = 102  # not including end
+end_movie_num = 103
+
+
+def get_screen_size():
+    user32 = ctypes.windll.user32
+    return user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
+
+
+scrsize = get_screen_size()
+# scrsize = (1536, 864)  # screen size in pixels
+# scrsize = (1920, 1080)  # screen size in pixels
+
 edfFileName = 'OS'
 
 first_msg_eng = "You will be watching short movies, \n " \
