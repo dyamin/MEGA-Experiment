@@ -21,10 +21,11 @@ def get_screen_size():
     user32 = ctypes.windll.user32
     return user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
 
-
-scrsize = get_screen_size()
+# Screen size: 345mm, 195mm
+# scrsize = get_screen_size()
 # scrsize = (1536, 864)  # screen size in pixels
 # scrsize = (1920, 1080)  # screen size in pixels
+scrsize = (3840, 2160)  # screen size in pixels
 
 edfFileName = 'OS'
 
