@@ -13,8 +13,8 @@ full_screen = True
 
 datapath = 'data'  # directory to save data
 sfx = 'p.mp4'  # suffix for the movies
-num_movies = 102  # not including end
-end_movie_num = 103
+num_movies = 86  # not including end
+end_movie_num = 87
 
 
 def get_screen_size():

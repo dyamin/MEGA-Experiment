@@ -6,6 +6,7 @@ import config
 
 
 def set_feedback_file(data_fname, exp_info):
+
     with open(data_fname + ".csv", 'w+') as csvfile:
         writer = csv.writer(csvfile, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         writer.writerow([exp_info['participant']] + [exp_info['age']] + [exp_info['gender']] + [exp_info['date']])
