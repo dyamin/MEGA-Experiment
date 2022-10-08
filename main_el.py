@@ -8,13 +8,14 @@ import time
 
 import numpy as np
 import numpy.random as rnd  # for random number generators
-from psychopy import visual, event, core, gui, data, parallel, prefs
+from psychopy import prefs
+prefs.hardware['audioLib'] = ['PTB', 'sounddevice', 'pyo', 'pygame']
+from psychopy import visual, event, core, gui, data, parallel, sound
 
 import config
 import eyelink_functions
 import feedback
 
-prefs.hardware['audioLib'] = ['PTB', 'sounddevice', 'pyo', 'pygame']  # change this with blckrok
 movpath = 'metroMovies_coded'  # directory where images can be found
 movlist = np.linspace(1, config.num_movies, num=config.num_movies, dtype=int)  # image names without the suffixes
 folder_laptop = r'C:\Users\dhyam\PycharmProjects\MoviesExperiment'
@@ -122,9 +123,9 @@ end_message = visual.TextStim(win, text="Thank you, please wait",
 # start the experiment
 #  ===============================
 
-trl_clock = core.Clock()
 # Display trial start text
 start_message.draw()
+# beep = sound.Sound(value='A', volume=1)
 
 win.mouseVisible = False  # make cursor invisible
 
@@ -140,7 +141,7 @@ movieDum.draw()
 win.flip()
 win.flip()
 
-n = 0
+metronome_sound = sound.Sound('metronome.wav')
 if 'space' in keys:
     if config.eyelink_on:
         el.startRecording(1, 1, 1, 1)
@@ -148,10 +149,10 @@ if 'space' in keys:
         para_port.setData(122)  # start experiment code is 122
         time.sleep(0.1)
         para_port.setData(0)
+    n = 0
     for i in np.arange(0, len(movlist)):
         n += 1
         win.flip()
-        trl_clock.reset()
         # Empty the keypresses list
         event.getKeys()
         # Set the movie:
@@ -160,10 +161,7 @@ if 'space' in keys:
         tag = str(movlist[i])
         movie = visual.MovieStim3(win, movie_fname, flipVert=False, size=config.scrsize, flipHoriz=False, loop=False)
 
-        core.wait(2 - trl_clock.getTime())
-
-        movie.draw()
-        trl_clock.reset()
+        # core.wait(2 - trl_clock.getTime())
 
         if config.eyelink_on:
             el.sendMessage("tagstrt " + tag)
@@ -173,10 +171,17 @@ if 'space' in keys:
             time.sleep(0.1)
             para_port.setData(0)
 
-        while trl_clock.getTime() < movie.duration:
+        # print("movie n" + str(n) + " started")
+        # beep.play()
+        metronome_sound.play()
+        while movie.status != visual.FINISHED:
             # el.sendMessage("mov"+tag +" flip" +str(n))
-            win.flip()
             movie.draw()
+            win.flip()
+        metronome_sound.stop()
+
+        # print("movie n" + str(n) + " played")
+        # beep.play()
         if config.eyelink_on:
             el.sendMessage("tagfin " + tag)
         if config.eeg_on:
@@ -192,7 +197,7 @@ if 'space' in keys:
             # Escape press = quit the experiment
             break
         # movie=None
-        if config.feedback_on and movlist[i] < 103:
+        if config.feedback_on and movlist[i] <= config.num_movies:
             feedback.ask_feedback(win, movie_fname, data_fname)
 # Advance to the next trial
 
