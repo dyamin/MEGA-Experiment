@@ -45,11 +45,11 @@ if config.get_subject_info:
 
 print(exp_info['session'])
 if exp_info['session'] == '1st':
-    movpath = 'metroMovies1_coded'  # directory where images can be found
+    movpath = 'animationsA'  # directory where images can be found
     # movpath = 'metroMovies'  # directory where images can be found
 
 elif exp_info['session'] == '2nd':
-    movpath = 'metroMovies2_coded'  # directory where images can be found
+    movpath = 'animationsB'  # directory where images can be found
 
 # Get date and time
 exp_info['date'] = data.getDateStr()

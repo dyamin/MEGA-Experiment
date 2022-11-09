@@ -4,8 +4,8 @@ import ctypes
 # PARAMETERS
 # ==============================================
 
-eyelink_on = 1
-is_hebrew = 1
+eyelink_on = 0
+is_hebrew = 0
 get_subject_info = 1
 feedback_on = 1
 eeg_on = 0
@@ -13,8 +13,8 @@ full_screen = True
 
 datapath = 'data'  # directory to save data
 sfx = 'p.mp4'  # suffix for the movies
-num_movies = 86  # not including end
-end_movie_num = 87
+num_movies = 39  # not including end
+end_movie_num = 40
 
 
 def get_screen_size():
