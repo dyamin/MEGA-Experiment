@@ -43,12 +43,13 @@ if config.get_subject_info:
     if dlg.OK == False:
         core.quit()
 
-print(exp_info['session'])
-if exp_info['session'] == '1st':
+curr_session = exp_info['session']
+print(curr_session)
+if curr_session == '1st':
     movpath = 'animationsA'  # directory where images can be found
     # movpath = 'metroMovies'  # directory where images can be found
 
-elif exp_info['session'] == '2nd':
+elif curr_session == '2nd':
     movpath = 'animationsB'  # directory where images can be found
 
 # Get date and time
@@ -130,7 +131,7 @@ start_message.draw()
 win.mouseVisible = False  # make cursor invisible
 
 win.flip()
-# Wait for a spacebar press to start the trial, or escape to quit
+# Wait for a spacebar press to start the trial, or escape to quit*
 keys = event.waitKeys(keyList=['space', 'escape'])
 
 # load fake movie
@@ -197,7 +198,7 @@ if 'space' in keys:
             # Escape press = quit the experiment
             break
         # movie=None
-        if config.feedback_on and movlist[i] <= config.num_movies:
+        if config.feedback_on and curr_session == '2nd' and movlist[i] <= config.num_movies:
             feedback.ask_feedback(win, movie_fname, data_fname)
 # Advance to the next trial
 

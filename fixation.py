@@ -22,8 +22,8 @@ feedback_on = 1
 datapath = 'data_fixation'  # directory to save data in
 movpath = 'movies'  # directory where images can be found
 sfx = 'p.mp4'  # suffix for the movies
-num_movies = 3  # not including end
-end_movie_num = 103
+num_movies = 64  # not including end
+end_movie_num = 65
 movlist = np.linspace(1, num_movies, num=num_movies, dtype=int)  # image names without the suffixes
 scrsize = (1920, 1080)  # screen size in pixels
 # scrsize = (800,600)                # screen size in pixels
