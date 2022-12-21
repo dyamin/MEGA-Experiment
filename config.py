@@ -10,6 +10,7 @@ get_subject_info = 1
 feedback_on = 1
 eeg_on = 0
 full_screen = True
+add_fixation_cross = 1
 
 datapath = 'data'  # directory to save data
 sfx = 'p.mp4'  # suffix for the movies

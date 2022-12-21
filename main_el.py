@@ -154,6 +154,8 @@ if 'space' in keys:
     for i in np.arange(0, len(movlist)):
         n += 1
         win.flip()
+        if config.add_fixation_cross:
+            feedback.draw_fixation_cross(win)
         # Empty the keypresses list
         event.getKeys()
         # Set the movie:

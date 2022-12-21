@@ -1,4 +1,5 @@
 import csv
+import time
 
 from psychopy import visual, event
 
@@ -51,3 +52,11 @@ def ask_feedback(win, movie_fname, data_fname):
         with open(data_fname + ".csv", 'a') as csvfile:
             writer = csv.writer(csvfile, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL)
             writer.writerow([movie_fname] + [keys1] + [keys2])
+
+
+def draw_fixation_cross(win):
+    # this function asks feedback and saves it to csv file
+    fixation_cross = visual.TextStim(win, text='+', color='black', height=150, alignText='center', antialias=False)
+    fixation_cross.draw()
+    win.flip()
+    time.sleep(2)
