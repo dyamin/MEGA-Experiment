@@ -17,7 +17,8 @@ import eyelink_functions
 import feedback
 
 movpath = 'animationsA'  # directory where images can be found
-movlist = np.linspace(1, config.num_movies, num=config.num_movies, dtype=int)  # image names without the suffixes
+movlist = np.linspace(1, config.num_movies_session_b, num=config.num_movies_session_b,
+                      dtype=int)  # image names without the suffixes
 folder_laptop = r'C:\Users\dhyam\PycharmProjects\MoviesExperiment'
 os.chdir(folder_laptop)
 
@@ -77,6 +78,7 @@ for mov in movlist:
 
 # Randomize the image order
 rnd.shuffle(movlist)  # Took it for debugging
+if curr_session == '1st': movlist = movlist[:config.num_movies_session_a]
 movlist = np.append(movlist, config.end_movie_num)  # add the "end" movie
 
 # ==========================
@@ -200,7 +202,7 @@ if 'space' in keys:
             # Escape press = quit the experiment
             break
         # movie=None
-        if config.feedback_on and curr_session == '2nd' and movlist[i] <= config.num_movies:
+        if config.feedback_on and curr_session == '2nd' and movlist[i] <= config.num_movies_session_b:
             feedback.ask_feedback(win, movie_fname, data_fname)
 # Advance to the next trial
 
