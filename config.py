@@ -5,7 +5,7 @@ import ctypes
 # ==============================================
 
 eyelink_on = 1
-is_hebrew = 0
+is_hebrew = 1
 get_subject_info = 1
 feedback_on = 1
 eeg_on = 0
@@ -14,9 +14,10 @@ add_fixation_cross = 1
 
 datapath = 'data'  # directory to save data
 sfx = 'p.mp4'  # suffix for the movies
+# num_movies = 12  # not including end
+# end_movie_num = 112
 num_movies = 64  # not including end
 end_movie_num = 65
-
 
 def get_screen_size():
     user32 = ctypes.windll.user32

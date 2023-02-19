@@ -16,7 +16,7 @@ import config
 import eyelink_functions
 import feedback
 
-movpath = 'metroMovies_coded'  # directory where images can be found
+movpath = 'animationsA'  # directory where images can be found
 movlist = np.linspace(1, config.num_movies, num=config.num_movies, dtype=int)  # image names without the suffixes
 folder_laptop = r'C:\Users\dhyam\PycharmProjects\MoviesExperiment'
 os.chdir(folder_laptop)
@@ -47,10 +47,10 @@ curr_session = exp_info['session']
 print(curr_session)
 if curr_session == '1st':
     movpath = 'animationsA'  # directory where images can be found
-    # movpath = 'metroMovies'  # directory where images can be found
-
+    # movpath = 'metroMovies1_coded'  # directory where images can be found
 elif curr_session == '2nd':
     movpath = 'animationsB'  # directory where images can be found
+    # movpath = 'metroMovies2_coded'  # directory where images can be found
 
 # Get date and time
 exp_info['date'] = data.getDateStr()
@@ -88,7 +88,7 @@ movlist = np.append(movlist, config.end_movie_num)  # add the "end" movie
 #   - Which orientation
 stim_order = []
 for im, in zip(movlist):
-    stim_order.append({'mov': mov})
+    stim_order.append({'mov': im})
 
 trials = data.TrialHandler(stim_order, nReps=1, extraInfo=exp_info,
                            method='sequential', originPath=config.datapath)
