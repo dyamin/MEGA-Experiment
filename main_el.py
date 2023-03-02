@@ -48,10 +48,10 @@ curr_session = exp_info['session']
 print(curr_session)
 if curr_session == '1st':
     # directory where images can be found
-    movpath = 'metroMovies1_coded' if config.epilepsy_mode else movpath = 'animationsA'
+    movpath = config.movpath + '1'
 elif curr_session == '2nd':
     # directory where images can be found
-    movpath = 'metroMovies2_coded' if config.epilepsy_mode else movpath = 'animationsB'
+    movpath = config.movpath + '2'
 
 # Get date and time
 exp_info['date'] = data.getDateStr()

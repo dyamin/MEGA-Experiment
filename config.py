@@ -16,14 +16,16 @@ add_fixation_cross = 1
 datapath = 'memory_reports'  # directory to save data
 sfx = 'p.mp4'  # suffix for the movies
 
-if (epilepsy_mode):
+if epilepsy_mode:
     num_movies_session_b = 111  # not including end
     num_movies_session_a = 111  # not including end
     end_movie_num = 112
+    movpath = 'metroMovies'
 else:
     num_movies_session_b = 64  # not including end
     num_movies_session_a = 52  # not including end
     end_movie_num = 65
+    movpath = 'animations'
 
 def get_screen_size():
     user32 = ctypes.windll.user32
