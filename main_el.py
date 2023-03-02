@@ -9,6 +9,7 @@ import time
 import numpy as np
 import numpy.random as rnd  # for random number generators
 from psychopy import prefs
+
 prefs.hardware['audioLib'] = ['PTB', 'sounddevice', 'pyo', 'pygame']
 from psychopy import visual, event, core, gui, data, parallel, sound
 
@@ -16,7 +17,6 @@ import config
 import eyelink_functions
 import feedback
 
-movpath = 'animationsA'  # directory where images can be found
 movlist = np.linspace(1, config.num_movies_session_b, num=config.num_movies_session_b,
                       dtype=int)  # image names without the suffixes
 folder_laptop = r'C:\Users\dhyam\PycharmProjects\MoviesExperiment'
@@ -40,18 +40,18 @@ exp_info = {
 if config.get_subject_info:
     dlg = gui.DlgFromDict(dictionary=exp_info, title=exp_name)
     # If 'Cancel' is pressed, quit
-    edfFileName = exp_info['edfFileName']
+    edfFileName = exp_info['edfFileName'] + '.edf'
     if dlg.OK == False:
         core.quit()
 
 curr_session = exp_info['session']
 print(curr_session)
 if curr_session == '1st':
-    movpath = 'animationsA'  # directory where images can be found
-    # movpath = 'metroMovies1_coded'  # directory where images can be found
+    # directory where images can be found
+    movpath = 'metroMovies1_coded' if config.epilepsy_mode else movpath = 'animationsA'
 elif curr_session == '2nd':
-    movpath = 'animationsB'  # directory where images can be found
-    # movpath = 'metroMovies2_coded'  # directory where images can be found
+    # directory where images can be found
+    movpath = 'metroMovies2_coded' if config.epilepsy_mode else movpath = 'animationsB'
 
 # Get date and time
 exp_info['date'] = data.getDateStr()
@@ -78,7 +78,8 @@ for mov in movlist:
 
 # Randomize the image order
 rnd.shuffle(movlist)  # Took it for debugging
-if curr_session == '1st': movlist = movlist[:config.num_movies_session_a]
+if curr_session == '1st':
+    movlist = movlist[:config.num_movies_session_a]
 movlist = np.append(movlist, config.end_movie_num)  # add the "end" movie
 
 # ==========================

@@ -4,6 +4,7 @@ import ctypes
 # PARAMETERS
 # ==============================================
 
+epilepsy_mode = 1
 eyelink_on = 1
 is_hebrew = 1
 get_subject_info = 1
@@ -12,13 +13,17 @@ eeg_on = 0
 full_screen = True
 add_fixation_cross = 1
 
-datapath = 'data'  # directory to save data
+datapath = 'memory_reports'  # directory to save data
 sfx = 'p.mp4'  # suffix for the movies
-# num_movies = 12  # not including end
-# end_movie_num = 112
-num_movies_session_b = 64  # not including end
-num_movies_session_a = 52  # not including end
-end_movie_num = 65
+
+if (epilepsy_mode):
+    num_movies_session_b = 111  # not including end
+    num_movies_session_a = 111  # not including end
+    end_movie_num = 112
+else:
+    num_movies_session_b = 64  # not including end
+    num_movies_session_a = 52  # not including end
+    end_movie_num = 65
 
 def get_screen_size():
     user32 = ctypes.windll.user32
